@@ -65,9 +65,9 @@ export const OrderPreview = () => {
   const isDelivered = activeStep === steps.length - 1;
 
   return (
-    <Card className="w-full max-w-sm shadow-xl">
+    <Card className="w-full max-w-lg shadow-xl">
       <CardHeader>
-        <CardTitle>Замовлення #A-1024</CardTitle>
+        <CardTitle className="text-lg">Замовлення #A-1024</CardTitle>
         <CardDescription>Від 21 жовтня · Нова пошта</CardDescription>
         <CardAction>
           <Badge variant={isDelivered ? "default" : "secondary"}>{steps[activeStep].label}</Badge>
@@ -79,16 +79,16 @@ export const OrderPreview = () => {
           const Icon = item.icon;
 
           return (
-            <Item key={item.name} size="sm">
-              <ItemMedia className={`size-9 rounded-lg ${item.tone}`}>
+            <Item key={item.name}>
+              <ItemMedia className={`size-11 rounded-xl ${item.tone}`}>
                 <Icon />
               </ItemMedia>
               <ItemContent>
-                <ItemTitle>{item.name}</ItemTitle>
+                <ItemTitle className="text-base">{item.name}</ItemTitle>
                 <ItemDescription>{item.meta}</ItemDescription>
               </ItemContent>
               <ItemActions>
-                <span className="text-sm font-medium tabular-nums">{item.price}</span>
+                <span className="text-base font-medium tabular-nums">{item.price}</span>
               </ItemActions>
             </Item>
           );
@@ -97,8 +97,8 @@ export const OrderPreview = () => {
         <Separator />
 
         <div className="flex items-center justify-between px-1">
-          <span className="text-sm text-muted-foreground">Разом</span>
-          <span className="font-heading text-base font-semibold tabular-nums">5 747 ₴</span>
+          <span className="text-base text-muted-foreground">Разом</span>
+          <span className="font-heading text-xl font-semibold tabular-nums">5 747 ₴</span>
         </div>
       </CardContent>
 
@@ -113,7 +113,7 @@ export const OrderPreview = () => {
                 {index > 0 && (
                   <div
                     aria-hidden
-                    className={`mt-2.5 h-0.5 min-w-2 flex-1 rounded-full transition-colors ${
+                    className={`mt-3.5 h-1 min-w-3 flex-1 rounded-full transition-colors ${
                       index <= activeStep ? "bg-primary" : "bg-border"
                     }`}
                   />
@@ -122,25 +122,25 @@ export const OrderPreview = () => {
                   type="button"
                   aria-current={isActive}
                   onClick={() => setActiveStep(index)}
-                  className="group flex flex-col items-center gap-1.5 rounded-xl p-1 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                  className="group flex flex-col items-center gap-2 rounded-xl p-1.5 outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
                 >
                   <span
-                    className={`relative flex size-5 items-center justify-center rounded-full border-2 transition-colors ${
+                    className={`relative flex size-7 items-center justify-center rounded-full border-2 transition-colors ${
                       isDone || isActive
                         ? "border-primary text-primary-foreground"
                         : "border-border bg-background text-transparent"
                     } ${isDone ? "bg-primary" : "bg-background"}`}
                   >
-                    {isDone && <RiCheckLine className="size-3" />}
+                    {isDone && <RiCheckLine className="size-4" />}
                     {isActive && (
                       <>
-                        <span className="absolute inset-[-4px] animate-ping rounded-full bg-primary/30" />
-                        <span className="size-2.5 rounded-full bg-primary" />
+                        <span className="absolute inset-[-5px] animate-ping rounded-full bg-primary/30" />
+                        <span className="size-3.5 rounded-full bg-primary" />
                       </>
                     )}
                   </span>
                   <span
-                    className={`text-[11px] leading-tight whitespace-nowrap ${
+                    className={`text-xs leading-tight whitespace-nowrap ${
                       isActive ? "font-medium text-foreground" : "text-muted-foreground"
                     }`}
                   >
@@ -152,8 +152,8 @@ export const OrderPreview = () => {
           })}
         </ol>
 
-        <div className="flex w-full items-center gap-2 text-xs text-muted-foreground">
-          <RiTruckLine className="size-3.5 shrink-0" />
+        <div className="flex w-full items-center gap-2 text-sm text-muted-foreground">
+          <RiTruckLine className="size-4 shrink-0" />
           <span>Орієнтовна доставка: завтра</span>
         </div>
       </CardFooter>
