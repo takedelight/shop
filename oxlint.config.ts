@@ -1,7 +1,9 @@
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "oxlint";
 
-const uiGlobalsCss = fileURLToPath(new URL("./apps/web/src/app/globals.css", import.meta.url));
+const uiGlobalsCss = fileURLToPath(
+  new URL("./packages/ui/src/styles/globals.css", import.meta.url),
+);
 
 export default defineConfig({
   categories: {
