@@ -21,7 +21,6 @@ export default defineConfig({
     "bun.lockb",
     "bun.lock",
     "apps/web/src/shared/ui/**",
-    "packages/ui/src/**",
     "apps/web/drizzle/**",
   ],
 
@@ -41,7 +40,7 @@ export default defineConfig({
           ],
         },
         sortTailwindcss: {
-          stylesheet: "apps/web/src/app/globals.css",
+          stylesheet: "packages/ui/src/styles/globals.css",
           functions: ["clsx", "cn", "cva"],
           preserveWhitespace: true,
         },
