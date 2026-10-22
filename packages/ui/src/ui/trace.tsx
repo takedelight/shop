@@ -2,7 +2,7 @@ import { RiArrowRightSLine } from "@remixicon/react";
 import { cn } from "cn";
 import * as React from "react";
 
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible";
 
 function Trace({ className, ...props }: React.ComponentProps<"div">) {
   return (

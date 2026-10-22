@@ -1,6 +1,6 @@
 import { RiLoader4Line } from "@remixicon/react";
 
-import { cn } from "@/lib";
+import { cn } from "../lib";
 
 export function Spinner({
   className,

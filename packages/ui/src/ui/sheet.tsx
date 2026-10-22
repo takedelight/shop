@@ -3,7 +3,7 @@ import { RiCloseLine } from "@remixicon/react";
 import { cn } from "cn";
 import * as React from "react";
 
-import { Button } from "@/ui/button";
+import { Button } from "../ui/button";
 
 function Sheet({ ...props }: SheetPrimitive.Root.Props) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
