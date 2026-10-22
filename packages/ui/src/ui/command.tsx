@@ -1,3 +1,5 @@
+"use client";
+
 import { RiCheckLine, RiSearchLine } from "@remixicon/react";
 import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "cn";

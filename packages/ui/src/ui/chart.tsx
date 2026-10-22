@@ -1,3 +1,5 @@
+"use client";
+
 import type { TooltipValueType } from "recharts";
 
 import { cn } from "cn";

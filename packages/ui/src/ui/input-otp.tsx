@@ -1,3 +1,5 @@
+"use client";
+
 import { RiSubtractLine } from "@remixicon/react";
 import { cn } from "cn";
 import { OTPInput, OTPInputContext } from "input-otp";

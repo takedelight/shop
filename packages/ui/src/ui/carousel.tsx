@@ -1,3 +1,5 @@
+"use client";
+
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 import { cn } from "cn";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
