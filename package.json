@@ -18,7 +18,6 @@
     "clean": "turbo clean",
     "prepare": "husky"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/bun": "latest",
     "@typescript-eslint/utils": "^8.72.0",

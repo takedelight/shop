@@ -24,6 +24,7 @@
       "name": "web",
       "version": "0.1.0",
       "dependencies": {
+        "@remixicon/react": "^4.9.0",
         "@shop/ui": "workspace:*",
         "better-auth": "^1.7.12",
         "drizzle-kit": "^0.31.11",
