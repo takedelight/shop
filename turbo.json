@@ -6,7 +6,9 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "inputs": ["$TURBO_DEFAULT$", "../../.env*"],
+      "env": ["DATABASE_URL", "NEXT_PUBLIC_*"]
     },
     "dev": {
       "cache": false,
