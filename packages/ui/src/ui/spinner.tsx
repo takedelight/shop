@@ -1,5 +1,6 @@
-import { cn } from "@/lib";
 import { RiLoader4Line } from "@remixicon/react";
+
+import { cn } from "@/lib";
 
 export function Spinner({
   className,
@@ -7,10 +8,6 @@ export function Spinner({
   ...props
 }: React.ComponentPropsWithoutRef<"svg">) {
   return (
-    <RiLoader4Line
-      className={cn("size-4 animate-spin", className)}
-      aria-hidden="true"
-      {...props}
-    />
+    <RiLoader4Line className={cn("size-4 animate-spin", className)} aria-hidden="true" {...props} />
   );
 }
