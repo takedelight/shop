@@ -65,7 +65,7 @@ export const OrderPreview = () => {
   const isDelivered = activeStep === steps.length - 1;
 
   return (
-    <Card className="w-full shadow-xl [--card-spacing:--spacing(8)]">
+    <Card className="w-full max-w-4xl shadow-xl [--card-spacing:--spacing(8)]">
       <CardHeader>
         <CardTitle className="text-2xl">Замовлення #A-1024</CardTitle>
         <CardDescription className="text-base">Від 21 жовтня · Нова пошта</CardDescription>
