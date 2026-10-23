@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 
 import "@shop/ui/styles/globals.css";
 import { Manrope, Space_Grotesk } from "next/font/google";
-import { Suspense } from "react";
-
-import { HeaderEntry } from "@/widgets/header";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -27,19 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">
-        <Suspense
-          fallback={
-            <div className="border-b py-2">
-              <div className="container mx-auto flex justify-between px-2">Loading...</div>
-            </div>
-          }
-        >
-          <HeaderEntry />
-        </Suspense>
-
-        <main className="flex-1">{children}</main>
-      </body>
+      <body className="flex min-h-full flex-col">{children}</body>
     </html>
   );
 }
