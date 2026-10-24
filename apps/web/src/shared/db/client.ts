@@ -2,6 +2,7 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 import { account } from "./schemas/account";
+import { category } from "./schemas/category";
 import { session } from "./schemas/session";
 import { user } from "./schemas/user";
 import { verification } from "./schemas/verification";
@@ -15,5 +16,6 @@ export const db = drizzle(pool, {
     account,
     session,
     verification,
+    category,
   },
 });

@@ -1,6 +1,7 @@
 import { relations } from "drizzle-orm";
 
 import { account } from "./schemas/account";
+import { category } from "./schemas/category";
 import { session } from "./schemas/session";
 import { user } from "./schemas/user";
 
@@ -21,4 +22,13 @@ export const accountRelations = relations(account, ({ one }) => ({
     fields: [account.userId],
     references: [user.id],
   }),
+}));
+
+export const categoryRelations = relations(category, ({ one, many }) => ({
+  parent: one(category, {
+    fields: [category.parentId],
+    references: [category.id],
+    relationName: "categoryTree",
+  }),
+  children: many(category, { relationName: "categoryTree" }),
 }));
