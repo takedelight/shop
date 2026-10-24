@@ -18,6 +18,10 @@
     "clean": "turbo clean",
     "prepare": "husky"
   },
+  "dependencies": {
+    "@hookform/resolvers": "^6.0.0",
+    "react-hook-form": "^7.91.0"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@typescript-eslint/utils": "^8.72.0",
