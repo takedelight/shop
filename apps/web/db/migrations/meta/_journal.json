@@ -15,6 +15,13 @@
       "when": 1792761187527,
       "tag": "0001_ambiguous_blackheart",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792832726928,
+      "tag": "0002_tired_machine_man",
+      "breakpoints": true
     }
   ]
 }
