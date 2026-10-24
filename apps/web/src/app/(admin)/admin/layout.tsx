@@ -1,8 +1,13 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger, TooltipProvider } from "@shop/ui";
 
+import { requireAdminAccess } from "@/shared/auth/helpers/admin-guard";
 import { AdminSidebarEntry } from "@/widgets/admin-sidebar";
 
-const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
+export const instant = false;
+
+const AdminLayout = async ({ children }: LayoutProps<"/admin">) => {
+  const _session = await requireAdminAccess();
+
   return (
     <TooltipProvider>
       <SidebarProvider>

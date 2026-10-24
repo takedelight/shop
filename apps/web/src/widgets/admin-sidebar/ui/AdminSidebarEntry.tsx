@@ -9,19 +9,11 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@shop/ui";
-import { headers } from "next/headers";
 import Link from "next/link";
 
-import { auth } from "@/shared/auth/auth";
-
 import { AdminSidebarNav } from "./AdminSidebarNav";
-import { AdminSidebarUser } from "./AdminSidebarUser";
 
 export const AdminSidebarEntry = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -44,17 +36,7 @@ export const AdminSidebarEntry = async () => {
         <AdminSidebarNav />
       </SidebarContent>
 
-      <SidebarFooter>
-        {session?.user && (
-          <AdminSidebarUser
-            user={{
-              name: session.user.name,
-              email: session.user.email,
-              image: session.user.image,
-            }}
-          />
-        )}
-      </SidebarFooter>
+      <SidebarFooter></SidebarFooter>
 
       <SidebarRail />
     </Sidebar>
