@@ -16,7 +16,9 @@
     "typecheck": "tsc --noEmit",
     "fullcheck": "oxlint . && oxfmt --check . && turbo run typecheck",
     "clean": "turbo clean",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "bun --filter @shop/web test",
+    "test:watch": "bun --filter @shop/web test:watch"
   },
   "dependencies": {
     "@hookform/resolvers": "^6.0.0",
