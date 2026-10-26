@@ -1,5 +1,5 @@
 export type ActionResult<T = unknown> = {
   success: boolean;
-  data?: T;
+  data: T | null;
   error?: string;
 };

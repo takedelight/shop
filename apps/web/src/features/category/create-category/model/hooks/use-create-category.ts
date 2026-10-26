@@ -1,5 +1,8 @@
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@shop/ui";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -8,6 +11,8 @@ import { CreateCategoryInput, createCategorySchema } from "@/entities/category";
 import { createCategoryAction } from "../../api/create-category.action";
 
 export const useCreateCategory = () => {
+  const router = useRouter();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const { formState, ...form } = useForm({
@@ -46,6 +51,8 @@ export const useCreateCategory = () => {
       });
 
       form.reset();
+
+      router.refresh();
 
       setIsOpen(false);
     } catch (error) {

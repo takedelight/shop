@@ -22,6 +22,7 @@ export async function createCategoryAction(input: CreateCategoryInput): Promise<
   if (!hasPermission) {
     return {
       success: false,
+      data: null,
       error: "Недостатньо прав для виконання цієї дії",
     };
   }
@@ -30,6 +31,7 @@ export async function createCategoryAction(input: CreateCategoryInput): Promise<
   if (!parsed.success) {
     return {
       success: false,
+      data: null,
       error: parsed.error.issues[0]?.message ?? "Помилка валідації даних",
     };
   }
@@ -43,8 +45,8 @@ export async function createCategoryAction(input: CreateCategoryInput): Promise<
     };
   } catch (err: any) {
     if (err?.code === "23505") {
-      return { success: false, error: "Категорія з таким slug вже існує" };
+      return { success: false, data: null, error: "Категорія з таким slug вже існує" };
     }
-    return { success: false, error: "Не вдалося зберегти категорію" };
+    return { success: false, data: null, error: "Не вдалося зберегти категорію" };
   }
 }

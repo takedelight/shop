@@ -8,6 +8,7 @@ export const categorySchema = z.object({
     .string()
     .max(255)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "Slug повинен містити лише малі літери, цифри та дефіси")
+    .nullable()
     .optional(),
   createdAt: z.date(),
   updatedAt: z.date(),
