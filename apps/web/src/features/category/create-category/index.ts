@@ -1,1 +1,1 @@
-export { CreateCategoryFormEntry } from "./ui/CreateCategoryEntry";
+export { CreateCategoryFormEntry } from "./ui/CreateCategoryFormEntry";

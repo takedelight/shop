@@ -66,3 +66,5 @@ export * from "./ui/toggle";
 export * from "./ui/toggle-group";
 export * from "./ui/tooltip";
 export * from "./ui/trace";
+export * from "./ui/checkbox-field";
+export * from "./ui/combobox-field";

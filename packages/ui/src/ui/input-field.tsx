@@ -34,7 +34,7 @@ export const InputField = ({
           "hover:bg-input/80 focus-within:bg-input/80",
           "focus-within:ring-2 focus-within:ring-primary",
           disabled && "cursor-not-allowed opacity-50",
-          error && "focus-within:ring-destructive",
+          error && "focus-within:ring-destructive ",
           className,
         )}
       >
