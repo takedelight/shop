@@ -16,7 +16,7 @@ export const categoryAttributeSchema = z.object({
   label: z.string().min(1, "Назва обов'язкова").max(255, "Назва занадто довга"),
   type: attributeTypeSchema,
   unit: z.string().max(50, "Одиниця виміру занадто довга").nullish(),
-  isRequired: z.boolean().default(false),
+  isRequired: z.boolean(),
 });
 
 export const createCategoryAttributeSchema = categoryAttributeSchema;

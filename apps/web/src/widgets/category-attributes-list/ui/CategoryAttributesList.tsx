@@ -1,24 +1,19 @@
+"use client";
+
 import { RiDeleteBinLine, RiListCheck2 } from "@remixicon/react";
 import { Button, ScrollArea, ScrollBar, Show } from "@shop/ui";
 
 import { CreateAttributeDialogEntry } from "@/features/category/create-category-attribute";
 
-interface AttributeItem {
-  id: string;
-  key: string;
-  label: string;
-  type: string;
-  unit?: string;
-  isRequired: boolean;
-}
-
-const mockAttributes: AttributeItem[] = [];
+import { useCategoryTableAttributesList } from "../model/use-category-attributes-list";
 
 export const CategoryAttributesListEntry = () => {
+  const { attributes } = useCategoryTableAttributesList();
+
   return (
     <Show
       className="h-130"
-      when={!!mockAttributes.length}
+      when={!!attributes?.length}
       fallback={
         <ScrollArea className="flex h-130! flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border/80 bg-input/30 px-4 py-8 text-center">
           <div className="flex h-full flex-col items-center justify-center">
@@ -38,9 +33,9 @@ export const CategoryAttributesListEntry = () => {
         </ScrollArea>
       }
     >
-      {mockAttributes.map((attr) => (
+      {attributes?.map((attr) => (
         <div
-          key={attr.id}
+          key={attr.key}
           className="flex items-center justify-between gap-4 py-3.5 transition-colors"
         >
           <div className="flex min-w-0 flex-col gap-1">

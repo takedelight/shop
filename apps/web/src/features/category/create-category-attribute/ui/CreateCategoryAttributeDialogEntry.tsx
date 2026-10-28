@@ -1,103 +1,34 @@
 "use client";
 
-import { RiAddLine } from "@remixicon/react";
-import {
-  Button,
-  CheckboxField,
-  ComboboxField,
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  InputField,
-  SelectField,
-} from "@shop/ui";
-import { ComponentProps, useState } from "react";
+import { Button } from "@shop/ui";
+import { ComponentProps } from "react";
 
-import { COMMON_UNITS, TYPE_OPTIONS } from "../model/const/options";
-
-export interface AttributeFormData {
-  key: string;
-  label: string;
-  type: string;
-  unit?: string;
-  isRequired: boolean;
-}
+import { useCreateCategoryAttributes } from "../model/hooks/use-create-category-atrributes";
+import { CreateCategoryAttributeDialog } from "./CreateCategoryAttributeDialog";
+import { CreateCategoryAttributeDialogCheckbox } from "./CreateCategoryAttributeDialogCheckbox";
+import { CreateCategoryAttributeDialogComboboxs } from "./CreateCategoryAttributeDialogComboboxs";
+import { CreateCategoryAttributeDialogInputs } from "./CreateCategoryAttributeDialogInputs";
 
 export const CreateAttributeDialogEntry = ({ ...triggerProps }: ComponentProps<typeof Button>) => {
-  const [open, setOpen] = useState(false);
-  const [unit, setUnit] = useState<string>("");
+  const { isOpen, setIsOpen, handleSubmit, control } = useCreateCategoryAttributes();
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        {...triggerProps}
-        render={(props) => (
-          <Button type="button" {...props}>
-            <RiAddLine className="mr-1 size-4" /> Додати поле
-          </Button>
-        )}
-      />
+    <CreateCategoryAttributeDialog open={isOpen} onOpenChange={setIsOpen}>
+      <CreateCategoryAttributeDialog.Trigger {...triggerProps} />
 
-      <DialogContent className="max-w-lg rounded-2xl p-6 sm:max-w-xl">
-        <form className="space-y-6">
-          <DialogHeader className="space-y-1">
-            <DialogTitle className="text-xl font-semibold">Додати характеристику</DialogTitle>
-            <DialogDescription className="text-sm text-muted-foreground">
-              Вкажіть параметри поля, яке буде додано до схеми товарів цієї категорії.
-            </DialogDescription>
-          </DialogHeader>
+      <CreateCategoryAttributeDialog.Content onSubmit={handleSubmit}>
+        <CreateCategoryAttributeDialog.Header />
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <InputField id="attr-key" name="key" label="JSON Key" placeholder="ram_gb" required />
-              <InputField
-                id="attr-label"
-                name="label"
-                label="Назва"
-                placeholder="Оперативна пам'ять"
-                required
-              />
-            </div>
+        <div className="space-y-4">
+          <CreateCategoryAttributeDialogInputs control={control} />
 
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <SelectField
-                name="type"
-                label="Тип даних"
-                options={TYPE_OPTIONS}
-                defaultValue="string"
-              />
+          <CreateCategoryAttributeDialogComboboxs control={control} />
 
-              <ComboboxField
-                id="attr-unit"
-                label="Од. виміру"
-                placeholder="Оберіть або введіть"
-                emptyText="Одиницю не знайдено"
-                options={COMMON_UNITS}
-                value={unit}
-                onValueChange={(val) => setUnit(val ?? "")}
-              />
-            </div>
+          <CreateCategoryAttributeDialogCheckbox control={control} />
+        </div>
 
-            <div className="pt-1">
-              <CheckboxField id="attr-required" name="isRequired" label="Обов'язкове поле" />
-            </div>
-          </div>
-
-          <DialogFooter className="flex justify-end gap-3 pt-2">
-            <DialogClose>
-              <Button type="button" variant="outline">
-                Скасувати
-              </Button>
-            </DialogClose>
-            <Button type="submit">Додати</Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+        <CreateCategoryAttributeDialog.Footer />
+      </CreateCategoryAttributeDialog.Content>
+    </CreateCategoryAttributeDialog>
   );
 };

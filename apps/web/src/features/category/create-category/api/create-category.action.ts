@@ -1,8 +1,8 @@
 "use server";
 
 import { category } from "@shop/db";
-import "server-only";
 import { headers } from "next/headers";
+import "server-only";
 
 import { auth } from "@/core/auth/auth";
 import { db } from "@/core/db";

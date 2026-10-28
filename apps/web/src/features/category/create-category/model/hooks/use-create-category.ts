@@ -1,27 +1,19 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@shop/ui";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
-import { CreateCategoryInput, createCategorySchema } from "@/entities/category";
+import { CreateCategoryInput } from "@/entities/category";
 
 import { createCategoryAction } from "../../api/create-category.action";
 
 export const useCreateCategory = () => {
+  const form = useFormContext<CreateCategoryInput>();
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const { formState, ...form } = useForm({
-    resolver: zodResolver(createCategorySchema),
-    defaultValues: {
-      name: "",
-      slug: "",
-    },
-  });
 
   const onSubmit = async (values: CreateCategoryInput) => {
     form.clearErrors("root");
@@ -53,6 +45,7 @@ export const useCreateCategory = () => {
       form.reset();
 
       router.refresh();
+      router.push(`/admin/categories`);
 
       setIsOpen(false);
     } catch (error) {
@@ -64,5 +57,5 @@ export const useCreateCategory = () => {
     }
   };
 
-  return { formState, onSubmit, isOpen, setIsOpen, ...form };
+  return { onSubmit, isOpen, setIsOpen, ...form };
 };
