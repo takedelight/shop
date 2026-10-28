@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@shop/ui";
 import Link from "next/link";
 
@@ -9,7 +7,7 @@ import { CreateCategoryEntry } from "@/widgets/create-category";
 
 export default function CreateCategoryPage() {
   return (
-    <div className="w-full space-y-8 ">
+    <div className="w-full  ">
       <CreateCategoryEntry />
 
       <CategoryAttributesListEntry />

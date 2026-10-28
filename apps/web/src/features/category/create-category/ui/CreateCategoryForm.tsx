@@ -4,7 +4,7 @@ import { CREATE_CATEGORY_FORM_ID } from "@/shared/const";
 
 const CreateCategoryRoot = ({ children, onSubmit }: ComponentProps<"form">) => {
   return (
-    <div className="w-full py-6">
+    <div className="w-full">
       <form id={CREATE_CATEGORY_FORM_ID} onSubmit={onSubmit} className="space-y-8">
         {children}
       </form>

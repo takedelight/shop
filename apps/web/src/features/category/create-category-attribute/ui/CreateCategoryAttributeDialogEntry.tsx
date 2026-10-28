@@ -1,3 +1,5 @@
+"use client";
+
 import { RiAddLine } from "@remixicon/react";
 import {
   Button,
