@@ -1,12 +1,13 @@
 "use server";
 
+import { category } from "@shop/db";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 import "server-only";
+import { headers } from "next/headers";
 
-import { auth } from "@/shared/auth/auth";
-import { category, db } from "@/shared/db";
+import { auth } from "@/core/auth/auth";
+import { db } from "@/core/db";
 import { ActionResult } from "@/shared/types";
 
 export async function deleteCategoryAction(categoryId: string): Promise<ActionResult> {

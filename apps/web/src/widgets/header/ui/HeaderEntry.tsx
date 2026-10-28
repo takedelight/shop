@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage, Input } from "@shop/ui";
 import { headers } from "next/headers";
 import Link from "next/link";
 
-import { auth } from "@/shared/auth/auth";
+import { auth } from "@/core/auth/auth";
 
 import { HEADER_ACTION_LINKS } from "../model/const/header";
 import { Header } from "./Header";

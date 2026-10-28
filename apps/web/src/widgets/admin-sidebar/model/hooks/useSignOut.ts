@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { authClient } from "@/shared/auth";
+import { authClient } from "@/core/auth";
 
 export const useSignOut = () => {
   const router = useRouter();

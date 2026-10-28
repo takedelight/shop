@@ -1,2 +1,2 @@
-export { getCategoriesAction } from "./api/get-categories.action";
 export * from "./model/category.schema";
+export * from "./model/atrribute.schema";

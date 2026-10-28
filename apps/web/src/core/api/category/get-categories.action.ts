@@ -1,10 +1,10 @@
 "use server";
 
-import { db } from "@/shared/db";
-import { ActionResult } from "@/shared/types";
+import { db } from "@/core/db";
+import { Category } from "@/entities/category/model/category.schema";
 import "server-only";
 
-import { Category } from "../model/category.schema";
+import { ActionResult } from "@/shared/types";
 
 export async function getCategoriesAction(): Promise<ActionResult<Category[]>> {
   const categories = await db.query.category.findMany();

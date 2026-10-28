@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Suspense } from "react";
 
-import { getCategoriesAction } from "@/entities/category";
+import { getCategoriesAction } from "@/core/api/category";
 import { CategoryTableEntry, CategoryTableSkeleton } from "@/widgets/categories-table";
 import { CategoriesToolbar } from "@/widgets/categories-toolbar";
 

@@ -1,11 +1,12 @@
 "use server";
 
-import { headers } from "next/headers";
+import { category } from "@shop/db";
 import "server-only";
+import { headers } from "next/headers";
 
+import { auth } from "@/core/auth/auth";
+import { db } from "@/core/db";
 import { CreateCategoryInput, createCategorySchema } from "@/entities/category";
-import { auth } from "@/shared/auth/auth";
-import { category, db } from "@/shared/db";
 import { ActionResult } from "@/shared/types";
 
 export async function createCategoryAction(input: CreateCategoryInput): Promise<ActionResult> {

@@ -3,7 +3,7 @@ import { betterAuth } from "better-auth/minimal";
 import { admin as adminPlugin } from "better-auth/plugins";
 import "server-only";
 
-import { db } from "../db/client";
+import { db } from "../db";
 import { ac, admin, customer, manager } from "./permissions";
 
 export const auth = betterAuth({

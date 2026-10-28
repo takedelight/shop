@@ -1,6 +1,6 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger, TooltipProvider } from "@shop/ui";
 
-import { requireAdminAccess } from "@/shared/auth/helpers/admin-guard";
+import { requireAdminAccess } from "@/core/auth/helpers/admin-guard";
 import { AdminSidebarEntry } from "@/widgets/admin-sidebar";
 
 export const instant = false;

@@ -1,6 +1,5 @@
+import { category } from "@shop/db";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-
-import { category } from "@/shared/db";
 
 import { createCategoryAction } from "./create-category.action";
 
@@ -21,14 +20,14 @@ vi.mock("server-only", () => ({}));
 vi.mock("next/headers", () => ({ headers: mocks.headers }));
 
 // 2. Точка перевірки прав у Better Auth
-vi.mock("@/shared/auth/auth", () => ({
+vi.mock("@/core/auth/auth", () => ({
   auth: { api: { userHasPermission: mocks.userHasPermission } },
 }));
 
-// 3. Мокаємо ЛИШЕ клієнт, бо client.ts створює new Pool() на рівні модуля.
-//    index.ts при цьому віддає реальну таблицю `category` та relations —
+// 3. Мокаємо singleton-клієнт (core/db.ts створює Pool на рівні модуля).
+//    Схеми імпортуються з @shop/db окремо —
 //    так тест бачить справжні колонки, а не підробку.
-vi.mock("@/shared/db/client", () => ({
+vi.mock("@/core/db", () => ({
   db: { insert: mocks.insert },
 }));
 
@@ -71,6 +70,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Недостатньо прав для виконання цієї дії",
       });
 
@@ -91,6 +91,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Недостатньо прав для виконання цієї дії",
       });
       expectNoDbCall();
@@ -112,7 +113,7 @@ describe("createCategoryAction", () => {
         slug: "graphics-cards",
       });
 
-      expect(result).toEqual({ success: false, error: "Назва обов'язкова" });
+      expect(result).toEqual({ success: false, data: null, error: "Назва обов'язкова" });
       expectNoDbCall();
     });
 
@@ -124,6 +125,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Slug повинен містити лише малі літери, цифри та дефіси",
       });
       expectNoDbCall();
@@ -137,6 +139,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Slug повинен містити лише малі літери, цифри та дефіси",
       });
       expectNoDbCall();
@@ -153,6 +156,7 @@ describe("createCategoryAction", () => {
       expect(mocks.values).toHaveBeenCalledWith({
         name: "Graphics Cards",
         slug: "graphics-cards",
+        attributes: [],
       });
       expect(mocks.returning).toHaveBeenCalledTimes(1);
     });
@@ -174,6 +178,7 @@ describe("createCategoryAction", () => {
       expect(mocks.values).toHaveBeenCalledWith({
         name: "Graphics Cards",
         slug: "graphics-cards",
+        attributes: [],
       });
       expect(mocks.values).not.toHaveBeenCalledWith(
         expect.objectContaining({ isActive: expect.anything() }),
@@ -202,6 +207,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Категорія з таким slug вже існує",
       });
       expect(mocks.insert).toHaveBeenCalledTimes(1);
@@ -214,6 +220,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Не вдалося зберегти категорію",
       });
     });
@@ -225,6 +232,7 @@ describe("createCategoryAction", () => {
 
       expect(result).toEqual({
         success: false,
+        data: null,
         error: "Не вдалося зберегти категорію",
       });
     });

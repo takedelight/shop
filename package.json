@@ -16,6 +16,9 @@
     "typecheck": "tsc --noEmit",
     "fullcheck": "oxlint . && oxfmt --check . && turbo run typecheck",
     "clean": "turbo clean",
+    "db:generate": "bun run --filter @shop/db db:generate",
+    "db:migrate": "bun run --filter @shop/db db:migrate",
+    "db:studio": "bun run --filter @shop/db db:studio",
     "prepare": "husky",
     "test": "bun --filter @shop/web test",
     "test:watch": "bun --filter @shop/web test:watch"

@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient } from "@/shared/auth";
+import { authClient } from "@/core/auth";
 
 export const useGoogleAuth = () => {
   const handleGoogleAuth = async () => {
