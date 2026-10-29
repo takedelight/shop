@@ -43,6 +43,13 @@
       "when": 1793176428721,
       "tag": "0005_certain_galactus",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793284319520,
+      "tag": "0006_old_machine_man",
+      "breakpoints": true
     }
   ]
 }
