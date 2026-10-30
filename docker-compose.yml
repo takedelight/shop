@@ -40,6 +40,7 @@ services:
       done;
 
       mc mb --ignore-existing myminio/${STORAGE_BUCKET_NAME:-app};
+      mc anonymous set download myminio/${STORAGE_BUCKET_NAME:-app};
       mc ilm rm --all --force myminio/${STORAGE_BUCKET_NAME:-app};
       mc ilm rule add --expire-days 1 --prefix 'temp/' myminio/${STORAGE_BUCKET_NAME:-app};
 
