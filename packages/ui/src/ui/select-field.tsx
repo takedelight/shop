@@ -1,9 +1,10 @@
-import { Select } from "@base-ui/react/select";
-import { RiArrowDownSLine, RiCheckLine } from "@remixicon/react";
+"use client";
+
 import { cn } from "cn";
 import * as React from "react";
 
-import { FieldLabel } from "../ui/field";
+import { Field, FieldDescription, FieldError, FieldLabel } from "../ui/field";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Show } from "../ui/show";
 
 export interface SelectOption<T = unknown> {
@@ -17,12 +18,15 @@ export interface SelectFieldProps<
   Value = string,
   Multiple extends boolean | undefined = false,
   T = unknown,
-> extends Select.Root.Props<Value, Multiple> {
+> extends Omit<React.ComponentProps<typeof Select<Value, Multiple>>, "onValueChange"> {
   label?: string;
   placeholder?: string;
+  description?: string;
+  error?: string;
   options: SelectOption<T>[];
   className?: string;
   triggerId?: string;
+  onValueChange?: (value: Multiple extends true ? Value[] : Value | null) => void;
   renderOption?: (option: SelectOption<T>) => React.ReactNode;
 }
 
@@ -33,81 +37,79 @@ export const SelectField = <
 >({
   label,
   placeholder = "Оберіть значення",
+  description,
+  error,
   options,
   className,
   triggerId,
   renderOption,
+  onValueChange,
   ...props
 }: SelectFieldProps<Value, Multiple, T>) => {
   const generatedId = React.useId();
   const id = triggerId || generatedId;
 
   return (
-    <Select.Root items={options} {...props}>
-      <Select.Trigger
-        id={id}
-        className={cn(
-          "group relative flex h-14! w-full items-center justify-between rounded-2xl border-0 bg-input px-4 text-left shadow-none transition-colors outline-none",
-          "hover:bg-input/80 focus:bg-input/80 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-0",
-          "disabled:cursor-not-allowed disabled:opacity-50",
-          className,
-        )}
+    <Field className="w-full">
+      <Select
+        items={options}
+        onValueChange={(val) => {
+          onValueChange?.(val as Multiple extends true ? Value[] : Value | null);
+        }}
+        {...props}
       >
-        <div className="flex flex-1 flex-col justify-center min-w-0 pr-2">
-          <Show when={!!label}>
-            <FieldLabel
-              htmlFor={id}
-              className="cursor-pointer truncate text-xs leading-tight text-muted-foreground select-none transition-colors group-focus-visible:text-primary"
-            >
-              {label}
-            </FieldLabel>
-          </Show>
+        <SelectTrigger
+          id={id}
+          className={cn(
+            "group relative flex h-14! w-full items-center justify-between rounded-2xl border-0 bg-input px-4 text-left shadow-none transition-colors outline-none",
+            "hover:bg-input/80 focus:bg-input/80 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-0",
+            "disabled:cursor-not-allowed disabled:opacity-50",
+            error && "focus-visible:ring-destructive aria-invalid:border-destructive",
+            className,
+          )}
+        >
+          <div className="flex flex-1 flex-col justify-center min-w-0 pr-2">
+            <Show when={!!label}>
+              <FieldLabel
+                htmlFor={id}
+                className={cn(
+                  "cursor-pointer truncate text-xs leading-tight text-muted-foreground select-none transition-colors group-focus-visible:text-primary",
+                  error && "text-destructive group-focus-visible:text-destructive",
+                )}
+              >
+                {label}
+              </FieldLabel>
+            </Show>
 
-          <Select.Value
-            placeholder={placeholder}
-            className="truncate text-[16px] font-normal leading-tight text-foreground data-placeholder:text-muted-foreground/50"
-          />
-        </div>
+            <SelectValue
+              placeholder={placeholder}
+              className="truncate text-[16px] font-normal leading-tight text-foreground data-placeholder:text-muted-foreground/50"
+            />
+          </div>
+        </SelectTrigger>
 
-        <Select.Icon className="flex size-5 shrink-0 items-center justify-center text-muted-foreground transition-transform duration-200 group-data-[popup-open]:rotate-180 group-focus-visible:text-primary">
-          <RiArrowDownSLine className="size-5" />
-        </Select.Icon>
-      </Select.Trigger>
-
-      <Select.Portal>
-        <Select.Positioner
+        <SelectContent
           side="bottom"
           align="start"
-          sideOffset={2}
+          sideOffset={4}
           alignItemWithTrigger={false}
-          className="z-50 w-[var(--anchor-width)] min-w-[var(--anchor-width)] outline-none"
+          className="w-[var(--anchor-width)] min-w-[var(--anchor-width)]"
         >
-          <Select.Popup className="max-h-72 overflow-y-auto rounded-xl border border-border bg-popover p-1 text-popover-foreground shadow-md outline-none origin-(--transform-origin)">
-            <Select.List className="space-y-0.5">
-              {options.map((opt) => (
-                <Select.Item
-                  key={opt.value}
-                  value={opt.value}
-                  disabled={opt.disabled}
-                  className={cn(
-                    "relative flex w-full cursor-pointer select-none items-center justify-between rounded-lg px-3 py-2.5 text-sm outline-none transition-colors",
-                    "hover:bg-accent hover:text-accent-foreground data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
-                    "data-disabled:pointer-events-none data-disabled:opacity-50",
-                  )}
-                >
-                  <Select.ItemText className="truncate">
-                    {renderOption ? renderOption(opt) : opt.label}
-                  </Select.ItemText>
+          {options.map((opt) => (
+            <SelectItem key={opt.value} value={opt.value} disabled={opt.disabled}>
+              {renderOption ? renderOption(opt) : opt.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
-                  <Select.ItemIndicator className="flex size-4 items-center justify-center text-primary">
-                    <RiCheckLine className="size-4" />
-                  </Select.ItemIndicator>
-                </Select.Item>
-              ))}
-            </Select.List>
-          </Select.Popup>
-        </Select.Positioner>
-      </Select.Portal>
-    </Select.Root>
+      <Show when={!!description}>
+        <FieldDescription>{description}</FieldDescription>
+      </Show>
+
+      <Show when={!!error}>
+        <FieldError>{error}</FieldError>
+      </Show>
+    </Field>
   );
 };

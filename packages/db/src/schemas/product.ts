@@ -1,6 +1,8 @@
-import { decimal, integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { decimal, integer, jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 import { category } from "./category";
+
+export type ProductAttributeValue = string | number | boolean;
 
 export const product = pgTable("product", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -13,6 +15,10 @@ export const product = pgTable("product", {
   imageUrl: text("image_url").array().notNull().default([]),
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
   stock: integer("stock").notNull().default(0),
+  attributes: jsonb("attributes")
+    .$type<Record<string, ProductAttributeValue>>()
+    .default({})
+    .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at")
     .defaultNow()

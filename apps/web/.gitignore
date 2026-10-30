@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# uploaded files (stored in s3)
+/public/uploads/
+
 # production
 /build
 
