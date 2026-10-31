@@ -1,0 +1,21 @@
+# Normalize line endings to LF on every platform.
+# Matches oxfmt's `endOfLine: "lf"`, so `oxfmt --check` (and `fullcheck`) stays
+# green on Windows checkouts (core.autocrlf).
+* text=auto eol=lf
+
+# Binary assets — never touched by the text filters above (git auto-detects
+# them too, listed explicitly for clarity).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.avif binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+*.gz binary
+*.pdf binary
