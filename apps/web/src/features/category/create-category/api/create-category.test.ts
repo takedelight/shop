@@ -20,7 +20,7 @@ vi.mock("server-only", () => ({}));
 vi.mock("next/headers", () => ({ headers: mocks.headers }));
 
 // 2. Точка перевірки прав у Better Auth
-vi.mock("@/core/auth/auth", () => ({
+vi.mock("@shop/auth/server", () => ({
   auth: { api: { userHasPermission: mocks.userHasPermission } },
 }));
 

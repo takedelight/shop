@@ -2,11 +2,11 @@
 
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { auth } from "@shop/auth/server";
 import { randomUUID } from "crypto";
-import { headers } from "next/headers";
 import "server-only";
+import { headers } from "next/headers";
 
-import { auth } from "@/core/auth/auth";
 import { STORAGE_BUCKET, STORAGE_PUBLIC_URL, s3 } from "@/core/s3";
 import { ActionResult } from "@/shared/types";
 

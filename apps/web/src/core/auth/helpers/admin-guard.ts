@@ -1,7 +1,6 @@
+import { auth } from "@shop/auth/server";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";
-
-import { auth } from "@/core/auth/auth";
 import "server-only";
 
 const ADMIN_ROLES = new Set(["admin", "manager"]);

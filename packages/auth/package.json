@@ -1,0 +1,24 @@
+{
+  "name": "@shop/auth",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "typecheck": "bun tsc --noEmit"
+  },
+  "dependencies": {
+    "@better-auth/expo": "^1.7.15",
+    "@shop/db": "workspace:*",
+    "better-auth": "^1.7.15",
+    "drizzle-orm": "^0.45.4",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

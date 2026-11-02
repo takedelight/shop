@@ -1,12 +1,12 @@
 "use server";
 
+import { auth } from "@shop/auth/server";
 import { category } from "@shop/db";
 import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
 import "server-only";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
-import { auth } from "@/core/auth/auth";
 import { db } from "@/core/db";
 import { ActionResult } from "@/shared/types";
 

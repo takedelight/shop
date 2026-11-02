@@ -1,10 +1,10 @@
 "use server";
 
+import { auth } from "@shop/auth/server";
 import { product } from "@shop/db";
-import { headers } from "next/headers";
 import "server-only";
+import { headers } from "next/headers";
 
-import { auth } from "@/core/auth/auth";
 import { db } from "@/core/db";
 import { CreateProductInput, createProductSchema } from "@/entities/product";
 import { ActionResult } from "@/shared/types";

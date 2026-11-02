@@ -1,5 +1,4 @@
+import { auth } from "@shop/auth/server";
 import { toNextJsHandler } from "better-auth/next-js";
-
-import { auth } from "@/core/auth/auth";
 
 export const { POST, GET } = toNextJsHandler(auth);
